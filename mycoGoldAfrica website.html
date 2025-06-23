@@ -1,1 +1,674 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MycoGold Africa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .chat-bubble {
+            position: relative;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+            background-color: #f0fdf4;
+        }
+        .chat-bubble:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        .chat-bubble::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: 24px;
+            width: 24px;
+            height: 24px;
+            background-color: inherit;
+            transform: rotate(45deg);
+            z-index: 0;
+        }
+        .chat-bubble h3, .chat-bubble p {
+            position: relative;
+            z-index: 1;
+        }
+        .section-hidden {
+            display: none;
+        }
+        .gallery-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <nav id="nav-menu" class="bg-white shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold text-green-600">MycoGold Africa</span>
+                </div>
+                <div class="hidden sm:flex sm:items-center sm:space-x-8">
+                    <a href="#home" class="nav-link text-gray-600 hover:text-green-600 px-3 py-2 text-sm font-medium">Home</a>
+                    <a href="#about" class="nav-link text-gray-600 hover:text-green-600 px-3 py-2 text-sm font-medium">About</a>
+                    <a href="#impact" class="nav-link text-gray-600 hover:text-green-600 px-3 py-2 text-sm font-medium">Impact</a>
+                    <a href="#gallery" class="nav-link text-gray-600 hover:text-green-600 px-3 py-2 text-sm font-medium">Gallery</a>
+                    <a href="#blog" class="nav-link text-gray-600 hover:text-green-600 px-3 py-2 text-sm font-medium">Blog</a>
+                    <a href="#contact" class="nav-link text-gray-600 hover:text-green-600 px-3 py-2 text-sm font-medium">Contact</a>
+                    <a href="#admin-login" id="admin-link" class="nav-link text-gray-600 hover:text-green-600 px-3 py-2 text-sm font-medium">Admin</a>
+                </div>
+                <div class="sm:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="p-2 text-gray-600 hover:text-green-600">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="section-hidden sm:hidden bg-white shadow">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="#home" class="nav-link block px-4 py-2 text-gray-600 hover:bg-green-50 hover:text-green-600">Home</a>
+                <a href="#about" class="nav-link block px-4 py-2 text-gray-600 hover:bg-green-50 hover:text-green-600">About</a>
+                <a href="#impact" class="nav-link block px-4 py-2 text-gray-600 hover:bg-green-50 hover:text-green-600">Impact</a>
+                <a href="#gallery" class="nav-link block px-4 py-2 text-gray-600 hover:bg-green-50 hover:text-green-600">Gallery</a>
+                <a href="#blog" class="nav-link block px-4 py-2 text-gray-600 hover:bg-green-50 hover:text-green-600">Blog</a>
+                <a href="#contact" class="nav-link block px-4 py-2 text-gray-600 hover:bg-green-50 hover:text-green-600">Contact</a>
+                <a href="#admin-login" id="mobile-admin-link" class="nav-link block px-4 py-2 text-gray-600 hover:bg-green-50 hover:text-green-600">Admin</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="pt-20 bg-gray-100 min-h-screen">
+        <div id="home-content" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-800">MycoGold Africa</h1>
+            <p class="mt-4 text-xl text-gray-600">Cultivating Youth, Nourishing the Future</p>
+            <div class="mt-8 flex justify-center space-x-4">
+                <button id="psychology-btn" class="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition duration-300">Youth Empowerment</button>
+                <button id="agriculture-btn" class="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition duration-300">Mushroom Farming</button>
+            </div>
+        </div>
+        <div id="activities-content" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-white rounded-lg shadow">
+            <h2 class="text-3xl font-bold text-gray-800 text-center">Ongoing Activities</h2>
+            <div class="mt-8 space-y-6">
+                <div class="chat-bubble bg-green-100 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold text-gray-700">School Outreach and Tree Planting</h3>
+                    <p class="mt-2 text-gray-600">Engaging schools to promote environmental awareness and planting trees to combat climate change.</p>
+                </div>
+                <div class="chat-bubble bg-green-100 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold text-gray-700">Organizing Cleanup and Composting Events</h3>
+                    <p class="mt-2 text-gray-600">Leading community cleanups and teaching sustainable composting to reduce waste and enrich soils.</p>
+                </div>
+                <div class="chat-bubble bg-green-100 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold text-gray-700">Active Mushroom Farming</h3>
+                    <p class="mt-2 text-gray-600">Training youth in sustainable mushroom cultivation to boost food security and create income opportunities.</p>
+                </div>
+                <div class="chat-bubble bg-green-100 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold text-gray-700">Mentorship Program</h3>
+                    <p class="mt-2 text-gray-600">Providing mentorship for both seniors and minors to foster personal growth and community leadership.</p>
+                </div>
+                <div class="chat-bubble bg-green-100 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold text-gray-700">Taking Part</h3>
+                    <p class="mt-2 text-gray-600">Actively participating in community initiatives to empower youth and promote sustainable practices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="psychology-section" class="section-hidden bg-blue-50 min-h-screen">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <button id="back-to-home-psych" class="mb-4 bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition duration-300">Back to Home</button>
+            <h2 class="text-3xl font-bold text-blue-800 text-center">Youth Empowerment & Mental Health</h2>
+            <p class="mt-4 text-lg text-gray-600 text-center">We empower African youth through mental health support, mentorship, and skill-building to foster resilience and purpose.</p>
+            <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-xl font-semibold text-blue-600">Mental Health Support</h3>
+                    <p class="mt-2 text-gray-600">Creating safe spaces where trauma, stress, and anxiety are addressed.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-xl font-semibold text-blue-600">Mentorship Programs</h3>
+                    <p class="mt-2 text-gray-600">Hands-on mentorship unlocking confidence, leadership, and personal growth.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-xl font-semibold text-blue-600">Skill Building</h3>
+                    <p class="mt-2 text-gray-600">Training for emotional resilience and productivity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="agriculture-section" class="section-hidden bg-green-50 min-h-screen">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <button id="back-to-home-agri" class="mb-4 bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition duration-300">Back to Home</button>
+            <h2 class="text-3xl font-bold text-green-800 text-center">Mushroom Farming</h2>
+            <p class="mt-4 text-lg text-gray-600 text-center">We train youth in sustainable mushroom farming to promote food security and economic empowerment.</p>
+            <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-xl font-semibold text-green-600">Training Programs</h3>
+                    <p class="mt-2 text-gray-600">Innovative mushroom cultivation as an untapped agri-business goldmine.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-xl font-semibold text-green-600">Market Access</h3>
+                    <p class="mt-2 text-gray-600">Connecting farmers to markets for economic viability.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-xl font-semibold text-green-600">Sustainability</h3>
+                    <p class="mt-2 text-gray-600">Climate-smart practices for a greener, resilient Africa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section-hidden py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-800 text-center">About MycoGold Africa</h2>
+            <div class="mt-8 space-y-6">
+                <div class="chat-bubble bg-green-100 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold text-gray-700">Mission Statement</h3>
+                    <p class="mt-2 text-gray-600">To empower Africa's youth with innovative, sustainable agricultural skills while promoting mental well-being, food security, and climate resilience across the continent.</p>
+                </div>
+                <div class="chat-bubble bg-green-100 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold text-gray-700">Vision Statement</h3>
+                    <p class="mt-2 text-gray-600">A hunger-free, mentally healthy, and climate-conscious Africa where empowered youth lead the charge in building sustainable communities, green economies, and a resilient future for all.</p>
+                </div>
+                <div class="chat-bubble bg-green-100 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold text-gray-700">Introduction</h3>
+                    <p class="mt-2 text-gray-600">MycoGold Africa is a youth-led nonprofit organization dedicated to youth empowerment, mental wellness, and climate-conscious farming practices—with mushroom cultivation as our signature approach. Founded by a youth-focused psychologist, our programs transform mindsets, create livelihoods, and grow purpose.</p>
+                </div>
+                <div class="chat-bubble bg-green-100 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold text-gray-700">Circular Farming Model</h3>
+                    <p class="mt-2 text-gray-600">Our closed-loop system includes: Mushroom Farming for nutritious, sustainable income; Insect Farming (Crickets) using mushroom waste for high-protein feed; and Worm Farming (Black Soldier Fly Larvae) for organic compost to boost soil health.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="impact" class="section-hidden py-16 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-800 text-center">Our Impact Areas</h2>
+            <div class="mt-8 space-y-6">
+                <div class="chat-bubble bg-white p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold text-green-600">Why It Matters</h3>
+                    <p class="mt-2 text-gray-600">Young Africans face unemployment and hopelessness. We provide purpose, skills, and opportunities to change this narrative.</p>
+                </div>
+                <div class="chat-bubble bg-white p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold text-green-600">Climate Vision</h3>
+                    <p class="mt-2 text-gray-600">We raise climate champions who transform organic waste into agricultural products, helping communities adapt to climate change.</p>
+                </div>
+                <div class="chat-bubble bg-white p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold text-green-600">Our SDGs</h3>
+                    <p class="mt-2 text-gray-600">SDG 1: No Poverty<br>SDG 2: Zero Hunger<br>SDG 3: Good Health<br>SDG 4: Quality Education<br>SDG 8: Decent Work<br>SDG 13: Climate Action<br>SDG 17: Partnerships</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="section-hidden py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-800 text-center">Our Gallery</h2>
+            <div id="gallery-content" class="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <div class="gallery-card bg-white rounded-lg shadow overflow-hidden">
+                    <img src="https://via.placeholder.com/400x300?text=Sample+Activity" alt="Sample Activity" class="w-full h-64 object-cover">
+                    <div class="p-4">
+                        <p class="text-gray-600 text-sm">A sample photo from our community activities.</p>
+                        <p class="mt-2 text-xs text-gray-400">Uploaded on: June 23, 2025</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="blog" class="section-hidden py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-800 text-center">Our Blog</h2>
+            <div id="blog-content" class="mt-8 space-y-6">
+                <div class="chat-bubble bg-white p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold text-gray-700">Empowering Youth Through Agriculture</h3>
+                    <p class="mt-2 text-gray-600">Our programs teach sustainable farming to create jobs and boost food security.</p>
+                    <p class="mt-2 text-sm text-gray-400">Posted on: June 23, 2025</p>
+                </div>
+                <div class="chat-bubble bg-white p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold text-gray-700">Mental Health Matters</h3>
+                    <p class="mt-2 text-gray-600">We provide safe spaces for youth to address trauma and build resilience.</p>
+                    <p class="mt-2 text-sm text-gray-400">Posted on: June 20, 2025</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section-hidden py-16 bg-green-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-800 text-center">Join the Movement</h2>
+            <p class="mt-4 text-lg text-gray-600 text-center">A generation of African youth is waiting. Join us to empower them.</p>
+            <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-700">Contact Us</h3>
+                    <p class="mt-2 text-gray-600">Email: <a href="mailto:mycogoldafrica.org@gmail.com" class="text-green-600 hover:underline">mycogoldafrica.org@gmail.com</a></p>
+                    <p class="mt-2 text-gray-600">Phone: +254 707 173 437</p>
+                    <p class="mt-2 text-gray-600">WhatsApp: <a href="https://wa.me/+254707173437" class="text-green-600 hover:underline">+254 707 173 437</a></p>
+                    <div class="mt-4 flex space-x-4">
+                        <a href="https://facebook.com/mycogoldafrica" class="text-gray-600 hover:text-green-600">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+                            </svg>
+                        </a>
+                        <a href="https://instagram.com/mycogoldafrica" class="text-gray-600 hover:text-green-600">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.148 3.252-1.691 4.771-4.919 4.919-1.266.058-1.645.069-4.849.069-3.204 0-3.584-.012-4.849-.069-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.849 0-3.204.012-3.584.069-4.849.148-3.252 1.691-4.771 4.919-4.919 1.265-.058 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.667.072 4.947.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.667-.014 4.947-.072 4.358-.2 6.78-2.618 6.98-6.98.059-1.281.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.2-4.358-2.618-6.78-6.98-6.98-1.281-.058-1.689-.072-4.948-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="https://linkedin.com/company/mycogoldafrica" class="text-gray-600 hover:text-green-600">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-6.455z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-700">Send Us a Message</h3>
+                    <div class="mt-4 space-y-4">
+                        <input id="contact-name" type="text" placeholder="Your Name" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500">
+                        <input id="contact-email" type="email" placeholder="Your Email" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500">
+                        <textarea id="contact-message" placeholder="Your Message" rows="4" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
+                        <button id="contact-submit" class="w-full bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition duration-300">Send Message</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="admin-login" class="section-hidden py-16 bg-gray-100">
+        <div class="max-w-md mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-800 text-center">Admin Login</h2>
+            <div class="mt-8 bg-white p-6 rounded-lg shadow">
+                <div class="space-y-4">
+                    <input id="admin-username" type="text" placeholder="Username" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500">
+                    <input id="admin-password" type="password" placeholder="Password" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500">
+                    <button id="admin-login-btn" class="w-full bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition duration-300">Login</button>
+                    <p id="admin-error" class="text-red-500 text-center section-hidden">Invalid credentials. Try again.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="admin-dashboard" class="section-hidden py-16 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-800 text-center">Admin Dashboard</h2>
+            <button id="admin-logout" class="mt-4 bg-red-500 text-white px-6 py-3 rounded-lg hover:bg-red-600 transition duration-300">Logout</button>
+            <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-xl font-semibold text-gray-700">Manage Profile Background</h3>
+                    <input id="background-upload" type="file" accept="image/*" class="mt-4 w-full p-3 border border-gray-300 rounded-lg">
+                    <button id="background-upload-btn" class="mt-4 bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition duration-300">Upload Background</button>
+                    <div id="background-list" class="mt-4 space-y-2"></div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-xl font-semibold text-gray-700">Manage Gallery Photos</h3>
+                    <input id="gallery-photo-upload" type="file" accept="image/*" class="mt-4 w-full p-3 border border-gray-300 rounded-lg">
+                    <textarea id="gallery-photo-story" placeholder="Add a story for the photo..." class="mt-4 w-full p-3 border border-gray-300 rounded-lg" rows="4"></textarea>
+                    <button id="gallery-photo-upload-btn" class="mt-4 bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition duration-300">Upload Photo & Story</button>
+                    <div id="gallery-photo-list" class="mt-4 space-y-2"></div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-xl font-semibold text-gray-700">Manage Videos</h3>
+                    <input id="video-upload" type="file" accept="video/*" class="mt-4 w-full p-3 border border-gray-300 rounded-lg">
+                    <button id="video-upload-btn" class="mt-4 bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition duration-300">Upload Video</button>
+                    <div id="video-list" class="mt-4 space-y-2"></div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow md:col-span-2">
+                    <h3 class="text-xl font-semibold text-gray-700">Create Blog Post</h3>
+                    <input id="post-title" type="text" placeholder="Post Title" class="mt-4 w-full p-3 border border-gray-300 rounded-lg">
+                    <textarea id="post-content" placeholder="Write your article here..." class="mt-4 w-full p-3 border border-gray-300 rounded-lg" rows="4"></textarea>
+                    <button id="post-publish-btn" class="mt-4 bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition duration-300">Publish Post</button>
+                    <div id="post-list" class="mt-4 space-y-2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>© 2025 MycoGold Africa. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const showSection = (sectionId) => {
+                document.querySelectorAll('section').forEach(section => section.classList.add('section-hidden'));
+                document.getElementById(sectionId).classList.remove('section-hidden');
+                document.getElementById('nav-menu').classList.remove('section-hidden');
+                document.getElementById('mobile-menu').classList.add('section-hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('section-hidden');
+            });
+
+            const psychologyBtn = document.getElementById('psychology-btn');
+            const agricultureBtn = document.getElementById('agriculture-btn');
+            const activitiesContent = document.getElementById('activities-content');
+            const navMenu = document.getElementById('nav-menu');
+
+            psychologyBtn.addEventListener('click', () => {
+                activitiesContent.classList.add('section-hidden');
+                showSection('psychology-section');
+                psychologyBtn.classList.add('bg-blue-600');
+                agricultureBtn.classList.remove('bg-green-600');
+                agricultureBtn.classList.add('bg-green-500');
+                if (window.innerWidth < 640) {
+                    navMenu.classList.add('section-hidden');
+                }
+            });
+
+            agricultureBtn.addEventListener('click', () => {
+                activitiesContent.classList.add('section-hidden');
+                showSection('agriculture-section');
+                agricultureBtn.classList.add('bg-green-600');
+                psychologyBtn.classList.remove('bg-blue-600');
+                psychologyBtn.classList.add('bg-blue-500');
+                if (window.innerWidth < 640) {
+                    navMenu.classList.add('section-hidden');
+                }
+            });
+
+            document.getElementById('back-to-home-psych').addEventListener('click', () => {
+                showSection('home');
+                activitiesContent.classList.remove('section-hidden');
+                psychologyBtn.classList.remove('bg-blue-600');
+                psychologyBtn.classList.add('bg-blue-500');
+            });
+
+            document.getElementById('back-to-home-agri').addEventListener('click', () => {
+                showSection('home');
+                activitiesContent.classList.remove('section-hidden');
+                agricultureBtn.classList.remove('bg-green-600');
+                agricultureBtn.classList.add('bg-green-500');
+            });
+
+            const adminLoginBtn = document.getElementById('admin-login-btn');
+            const adminUsername = document.getElementById('admin-username');
+            const adminPassword = document.getElementById('admin-password');
+            const adminError = document.getElementById('admin-error');
+            const adminLink = document.getElementById('admin-link');
+            const mobileAdminLink = document.getElementById('mobile-admin-link');
+            const adminLogout = document.getElementById('admin-logout');
+
+            const checkAuth = () => {
+                const isLoggedIn = localStorage.getItem('isAdminLoggedIn') === 'true';
+                adminLink.textContent = isLoggedIn ? 'Dashboard' : 'Admin';
+                mobileAdminLink.textContent = isLoggedIn ? 'Dashboard' : 'Admin';
+                adminLink.href = isLoggedIn ? '#admin-dashboard' : '#admin-login';
+                mobileAdminLink.href = isLoggedIn ? '#admin-dashboard' : '#admin-login';
+                return isLoggedIn;
+            };
+
+            adminLoginBtn.addEventListener('click', () => {
+                if (adminUsername.value === 'admin' && adminPassword.value === 'password123') {
+                    localStorage.setItem('isAdminLoggedIn', 'true');
+                    adminError.classList.add('section-hidden');
+                    showSection('admin-dashboard');
+                    checkAuth();
+                } else {
+                    adminError.classList.remove('section-hidden');
+                }
+            });
+
+            adminLogout.addEventListener('click', () => {
+                localStorage.removeItem('isAdminLoggedIn');
+                showSection('home');
+                checkAuth();
+            });
+
+            const backgroundUploadBtn = document.getElementById('background-upload-btn');
+            const backgroundList = document.getElementById('background-list');
+            const galleryPhotoUploadBtn = document.getElementById('gallery-photo-upload-btn');
+            const galleryPhotoList = document.getElementById('gallery-photo-list');
+            const videoUploadBtn = document.getElementById('video-upload-btn');
+            const videoList = document.getElementById('video-list');
+            const galleryContent = document.getElementById('gallery-content');
+            const postTitle = document.getElementById('post-title');
+            const postContent = document.getElementById('post-content');
+            const postPublishBtn = document.getElementById('post-publish-btn');
+            const postList = document.getElementById('post-list');
+            const blogContent = document.getElementById('blog-content');
+            const contactSubmit = document.getElementById('contact-submit');
+            const contactName = document.getElementById('contact-name');
+            const contactEmail = document.getElementById('contact-email');
+            const contactMessage = document.getElementById('contact-message');
+
+            contactSubmit.addEventListener('click', () => {
+                const name = contactName.value.trim();
+                const email = contactEmail.value.trim();
+                const message = contactMessage.value.trim();
+                if (name && email && message) {
+                    const subject = encodeURIComponent(`Message from ${name} via MycoGold Africa Website`);
+                    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+                    window.location.href = `mailto:mycogoldafrica.org@gmail.com?subject=${subject}&body=${body}`;
+                    contactName.value = '';
+                    contactEmail.value = '';
+                    contactMessage.value = '';
+                    alert('Message prepared for sending! Please complete the process in your email client.');
+                } else {
+                    alert('Please fill in all fields.');
+                }
+            });
+
+            const loadBackgrounds = () => {
+                const backgrounds = JSON.parse(localStorage.getItem('backgrounds') || '[]');
+                backgroundList.innerHTML = '';
+                backgrounds.forEach((bg, index) => {
+                    const div = document.createElement('div');
+                    div.className = 'flex items-center space-x-2';
+                    div.innerHTML = `<img src="${bg.url}" alt="Background ${index}" class="h-16 w-16 object-cover rounded">
+                        <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 delete-bg" data-index="${index}">Delete</button>`;
+                    backgroundList.appendChild(div);
+                });
+                document.querySelectorAll('.delete-bg').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const index = btn.dataset.index;
+                        const bgs = JSON.parse(localStorage.getItem('backgrounds') || '[]');
+                        bgs.splice(index, 1);
+                        localStorage.setItem('backgrounds', JSON.stringify(bgs));
+                        loadBackgrounds();
+                    });
+                });
+            };
+
+            const loadGalleryContent = () => {
+                const galleryItems = JSON.parse(localStorage.getItem('galleryItems') || '[]');
+                galleryPhotoList.innerHTML = '';
+                galleryContent.innerHTML = '';
+                galleryItems.forEach((item, index) => {
+                    const listDiv = document.createElement('div');
+                    listDiv.className = 'flex items-center space-x-2';
+                    listDiv.innerHTML = `<img src="${item.url}" alt="Photo ${index}" class="h-16 w-16 object-cover rounded">
+                        <p class="text-gray-600 flex-1 truncate">${item.story.substring(0, 50)}...</p>
+                        <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 delete-gallery-item" data-index="${index}">Delete</button>`;
+                    galleryPhotoList.appendChild(listDiv);
+
+                    const galleryDiv = document.createElement('div');
+                    galleryDiv.className = 'gallery-card bg-white rounded-lg shadow overflow-hidden';
+                    galleryDiv.innerHTML = `
+                        <img src="${item.url}" alt="Photo ${index}" class="w-full h-64 object-cover">
+                        <div class="p-4">
+                            <p class="text-gray-600 text-sm">${item.story}</p>
+                            <p class="mt-2 text-xs text-gray-400">Uploaded on: ${new Date(item.timestamp).toLocaleDateString()}</p>
+                        </div>`;
+                    galleryContent.appendChild(galleryDiv);
+                });
+
+                document.querySelectorAll('.delete-gallery-item').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const index = btn.dataset.index;
+                        const items = JSON.parse(localStorage.getItem('galleryItems') || '[]');
+                        items.splice(index, 1);
+                        localStorage.setItem('galleryItems', JSON.stringify(items));
+                        loadGalleryContent();
+                    });
+                });
+            };
+
+            const loadVideos = () => {
+                const videos = JSON.parse(localStorage.getItem('videos') || '[]');
+                videoList.innerHTML = '';
+                videos.forEach((video, index) => {
+                    const div = document.createElement('div');
+                    div.className = 'flex items-center space-x-2';
+                    div.innerHTML = `<video src="${video.url}" class="h-16 w-16 object-cover rounded" controls></video>
+                        <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 delete-video" data-index="${index}">Delete</button>`;
+                    videoList.appendChild(div);
+                });
+                document.querySelectorAll('.delete-video').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const index = btn.dataset.index;
+                        const vids = JSON.parse(localStorage.getItem('videos') || '[]');
+                        vids.splice(index, 1);
+                        localStorage.setItem('videos', JSON.stringify(vids));
+                        loadVideos();
+                    });
+                });
+            };
+
+            const loadPosts = () => {
+                const posts = JSON.parse(localStorage.getItem('posts') || '[]');
+                postList.innerHTML = '';
+                blogContent.innerHTML = '';
+                const defaultPosts = [
+                    { id: 1, title: 'Empowering Youth Through Agriculture', content: 'Our programs teach sustainable farming to create jobs and boost food security.', timestamp: new Date('2025-06-23').getTime() },
+                    { id: 2, title: 'Mental Health Matters', content: 'We provide safe spaces for youth to address trauma and build resilience.', timestamp: new Date('2025-06-20').getTime() }
+                ];
+                posts.forEach((post, index) => {
+                    const postDiv = document.createElement('div');
+                    postDiv.className = 'flex items-center space-x-2';
+                    postDiv.innerHTML = `<h4 class="text-lg font-semibold">${post.title}</h4>
+                        <p class="text-gray-600 truncate">${post.content.substring(0, 50)}...</p>
+                        <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 delete-post" data-index="${index}">Delete</button>`;
+                    postList.appendChild(postDiv);
+                    const blogDiv = document.createElement('div');
+                    blogDiv.className = 'chat-bubble bg-white p-6 rounded-lg';
+                    blogDiv.innerHTML = `<h3 class="text-xl font-semibold text-gray-700">${post.title}</h3>
+                        <p class="mt-2 text-gray-600">${post.content}</p>
+                        <p class="mt-2 text-sm text-gray-400">Posted on: ${new Date(post.timestamp).toLocaleDateString()}</p>`;
+                    blogContent.appendChild(blogDiv);
+                });
+                defaultPosts.forEach(post => {
+                    const blogDiv = document.createElement('div');
+                    blogDiv.className = 'chat-bubble bg-white p-6 rounded-lg';
+                    blogDiv.innerHTML = `<h3 class="text-xl font-semibold text-gray-700">${post.title}</h3>
+                        <p class="mt-2 text-gray-600">${post.content}</p>
+                        <p class="mt-2 text-sm text-gray-400">Posted on: ${new Date(post.timestamp).toLocaleDateString()}</p>`;
+                    blogContent.appendChild(blogDiv);
+                });
+                document.querySelectorAll('.delete-post').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const index = btn.dataset.index;
+                        const posts = JSON.parse(localStorage.getItem('posts') || '[]');
+                        posts.splice(index, 1);
+                        localStorage.setItem('posts', JSON.stringify(posts));
+                        loadPosts();
+                    });
+                });
+            };
+
+            backgroundUploadBtn.addEventListener('click', () => {
+                const file = document.getElementById('background-upload').files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        const backgrounds = JSON.parse(localStorage.getItem('backgrounds') || '[]');
+                        backgrounds.push({ id: Date.now(), url: e.target.result });
+                        localStorage.setItem('backgrounds', JSON.stringify(backgrounds));
+                        loadBackgrounds();
+                        document.getElementById('background-upload').value = '';
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    alert('Please select an image.');
+                }
+            });
+
+            galleryPhotoUploadBtn.addEventListener('click', () => {
+                const file = document.getElementById('gallery-photo-upload').files[0];
+                const story = document.getElementById('gallery-photo-story').value.trim();
+                if (file && story) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        const galleryItems = JSON.parse(localStorage.getItem('galleryItems') || '[]');
+                        galleryItems.push({ id: Date.now(), url: e.target.result, story, timestamp: Date.now() });
+                        localStorage.setItem('galleryItems', JSON.stringify(galleryItems));
+                        loadGalleryContent();
+                        document.getElementById('gallery-photo-upload').value = '';
+                        document.getElementById('gallery-photo-story').value = '';
+                        alert('Photo and story uploaded successfully!');
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    alert('Please upload a photo and provide a story.');
+                }
+            });
+
+            videoUploadBtn.addEventListener('click', () => {
+                const file = document.getElementById('video-upload').files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        const videos = JSON.parse(localStorage.getItem('videos') || '[]');
+                        videos.push({ id: Date.now(), url: e.target.result });
+                        localStorage.setItem('videos', JSON.stringify(videos));
+                        loadVideos();
+                        document.getElementById('video-upload').value = '';
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    alert('Please select a video.');
+                }
+            });
+
+            postPublishBtn.addEventListener('click', () => {
+                const title = postTitle.value.trim();
+                const content = postContent.value.trim();
+                if (title && content) {
+                    const posts = JSON.parse(localStorage.getItem('posts') || '[]');
+                    posts.push({ id: Date.now(), title, content, timestamp: Date.now() });
+                    localStorage.setItem('posts', JSON.stringify(posts));
+                    loadPosts();
+                    postTitle.value = '';
+                    postContent.value = '';
+                    alert('Post published successfully!');
+                } else {
+                    alert('Please fill in both title and content.');
+                }
+            });
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const sectionId = link.getAttribute('href').slice(1);
+                    if (sectionId === 'admin-dashboard' && !checkAuth()) {
+                        showSection('admin-login');
+                    } else {
+                        showSection(sectionId);
+                    }
+                });
+            });
+
+            checkAuth();
+            loadBackgrounds();
+            loadGalleryContent();
+            loadVideos();
+            loadPosts();
+            showSection('home');
+        });
+    </script>
+</body>
+</html>
+
